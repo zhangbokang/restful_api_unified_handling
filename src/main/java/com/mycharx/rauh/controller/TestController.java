@@ -48,7 +48,7 @@ public class TestController {
      */
     @GetMapping("/{id}")
     public TestVo getTestVoById(@PathVariable Long id) {
-        throw new BusinessException("1001", "根据ID【" + id + "】查询用户异常");
+        throw new BusinessException("1000", "根据ID【" + id + "】查询用户异常");
     }
 
     /**
