@@ -1,9 +1,12 @@
 package com.mycharx.rauh.controller;
 
+import com.mycharx.rauh.common.unifiedexception.BusinessException;
+import com.mycharx.rauh.common.unifiedexception.ExceptionEnum;
 import com.mycharx.rauh.vo.TestVo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +37,26 @@ public class TestController {
      * @return the response entity
      */
     @GetMapping("/testResponseEntity")
-    public ResponseEntity getTestVoEntity(){
-        return new ResponseEntity(TestVo.builder().id(1L).name("日拱一兵").build(), HttpStatus.OK);
+    public ResponseEntity getTestVoEntity() {
+        return new ResponseEntity(TestVo.builder().id(1L).name("xxx").build(), HttpStatus.OK);
+    }
+
+    /**
+     * 测试统一异常处理
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public TestVo getTestVoById(@PathVariable Long id) {
+        throw new BusinessException("1001", "根据ID【" + id + "】查询用户异常");
+    }
+
+    /**
+     * 测试通过枚举类构建异常并抛出
+     * @return
+     */
+    @GetMapping("/ttt")
+    public TestVo getTestVoTtt() {
+        throw BusinessException.byEnum(ExceptionEnum.DATABASE_ERROR);
     }
 }

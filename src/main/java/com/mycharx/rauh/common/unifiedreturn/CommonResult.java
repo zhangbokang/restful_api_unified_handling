@@ -2,7 +2,6 @@ package com.mycharx.rauh.common.unifiedreturn;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public final class CommonResult<T> {
 
     /**
@@ -47,4 +45,21 @@ public final class CommonResult<T> {
     public CommonResult(T resultBody) {
         this.resultBody = resultBody;
     }
+
+    /**
+     * Error result common result.
+     *
+     * @param <T>       the type parameter
+     * @param errorCode the error code
+     * @param errorMsg  the error msg
+     * @return the common result
+     */
+    public static <T> CommonResult<T> errorResult(String errorCode, String errorMsg){
+        CommonResult<T> commonResult = new CommonResult<>();
+        commonResult.errorCode = errorCode;
+        commonResult.errorMsg = errorMsg;
+        commonResult.status = -1;
+        return commonResult;
+    }
+
 }
