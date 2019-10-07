@@ -33,7 +33,7 @@ public class UnifiedReturnConfig {
                 return body;
             }
 
-            return CommonResult.builder().resultBody(body).build();
+            return new CommonResult<Object>(body);
         }
     }
 }

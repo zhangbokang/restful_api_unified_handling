@@ -22,19 +22,16 @@ public final class CommonResult<T> {
     /**
      * 状态码，标识请求成功与否，如 [1:成功；-1:失败]
      */
-    @Builder.Default
     private int status = 1;
 
     /**
      * 错误码，给出明确错误码，更好的应对业务异常；请求成功该值可为空
      */
-    @Builder.Default
     private String errorCode = "";
 
     /**
      * 错误消息，与错误码相对应，更具体的描述异常信息
      */
-    @Builder.Default
     private String errorMsg = "";
 
     /**
@@ -42,12 +39,12 @@ public final class CommonResult<T> {
      */
     private T resultBody;
 
-//    /**
-//     * 成功的构造方法
-//     *
-//     * @param resultBody the result body
-//     */
-//    public CommonResult(T resultBody) {
-//        this.resultBody = resultBody;
-//    }
+    /**
+     * 成功的构造方法
+     *
+     * @param resultBody the result body
+     */
+    public CommonResult(T resultBody) {
+        this.resultBody = resultBody;
+    }
 }
